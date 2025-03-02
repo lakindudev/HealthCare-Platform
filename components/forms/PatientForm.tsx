@@ -6,7 +6,17 @@ import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import CustomFormField from "./CustomFormField";
+import CustomFormField from "../ui/CustomFormField";
+
+export enum FormFieldType{
+  INPUT = 'input',
+  TEXTAREA = 'textarea',
+  PHONE_INPUT = 'phoneInput',
+  DATE_PICKER = 'date_picker',
+  CHECKBOX = 'checkbox',
+  SELECT = 'select',
+  SKELETON = 'skeleton',
+}
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -35,7 +45,29 @@ const PatientForm = () => {
         </section>
         
         <CustomFormField 
+        fieldType = {FormFieldType.INPUT}
          control={form.control}
+         name = 'name'
+         label = "Full name"
+         placeholder = "John Deo"
+         iconSrc = "/assets/icons/user.svg"
+         iconAlt = "user"
+        />
+        <CustomFormField 
+        fieldType = {FormFieldType.INPUT}
+         control={form.control}
+         name = 'email'
+         label = "Email"
+         placeholder = "lakindu@gmaail.com"
+         iconSrc = "/assets/icons/email.svg"
+         iconAlt = "email"
+        />
+        <CustomFormField 
+        fieldType = {FormFieldType.PHONE_INPUT}
+         control={form.control}
+         name = 'phone number'
+         label = "Phone Number"
+         placeholder = "(555) 123-5674"
         />
 
         <Button type="submit">Submit</Button>
