@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import CustomFormField from "../ui/CustomFormField";
+import SubmitButton from "../SubmitButton";
 
 export enum FormFieldType{
   INPUT = 'input',
@@ -70,7 +71,7 @@ const PatientForm = () => {
          placeholder = "(555) 123-5674"
         />
 
-        <Button type="submit">Submit</Button>
+        <SubmitButton isLoading={false}>Get Started</SubmitButton>
       </form>
     </Form>
   );
