@@ -11,6 +11,7 @@ import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
+import { createUser } from "@/lib/actions/patient.action";
 
 export enum FormFieldType{
   INPUT = 'input',
@@ -41,14 +42,21 @@ const PatientForm = () => {
     setIsLoading(true);
 
     try {
-      // const userData = {name, email, phone}
+      const userData = {name, email, phone};
+      const user = await createUser(userData);
 
-      // const user = await createUser(userData);
+      console.log("User created:", user);
 
-      // if (!user) router.push(`/patient/${user._id}/register`);
+      if (user) {
+        router.push(`/patients/${user.$id}/register`);
+      } else {
+        console.log("User creation failed or returned undefined.");
+      }
 
     } catch (error) {
-      console.log(error);
+      console.log("Error during user creation:", error);
+    } finally {
+      setIsLoading(false);
     }   
   }
 
